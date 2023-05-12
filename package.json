@@ -1,6 +1,6 @@
 {
-  "name": "@space-bico-account-abstraction/sdk",
-  "version": "0.6.0",
+  "name": "space-bico-account-abstraction",
+  "version": "1.0.0",
   "main": "./dist/src/index.js",
   "license": "MIT",
   "files": [
@@ -8,6 +8,9 @@
     "src",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clear": "rm -rf dist artifacts cache",
     "lint": "eslint -f unix .",
@@ -34,6 +37,7 @@
     "@nomicfoundation/hardhat-toolbox": "^1.0.2",
     "@nomiclabs/hardhat-ethers": "^2.0.0",
     "chai": "^4.3.6",
-    "hardhat": "^2.11.0"
+    "hardhat": "^2.11.0",
+    "typescript": "^5.0.4"
   }
 }
