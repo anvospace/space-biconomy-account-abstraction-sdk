@@ -100,6 +100,7 @@ export abstract class BaseAccountAPI {
 
   /**
    * check if the contract is already deployed.
+   * TODO: check
    */
   async checkAccountPhantom (): Promise<boolean> {
     if (!this.isPhantom) {

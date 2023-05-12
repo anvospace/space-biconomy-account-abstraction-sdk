@@ -49,6 +49,7 @@ export class SimpleAccountAPI extends BaseAccountAPI {
     this.index = BigNumber.from(params.index ?? 0)
   }
 
+  // TODO: check
   async _getAccountContract (): Promise<SimpleAccount> {
     if (this.accountContract == null) {
       this.accountContract = SimpleAccount__factory.connect(await this.getAccountAddress(), this.provider)
@@ -74,6 +75,7 @@ export class SimpleAccountAPI extends BaseAccountAPI {
     ])
   }
 
+  // TODO: getNonce in smart account
   async getNonce (): Promise<BigNumber> {
     if (await this.checkAccountPhantom()) {
       return BigNumber.from(0)
