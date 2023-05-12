@@ -1,5 +1,5 @@
-import { BigNumber, BigNumberish } from 'ethers';
-import { SimpleAccount, SimpleAccountFactory } from '@account-abstraction/contracts';
+import { BigNumberish } from 'ethers';
+import { SimpleAccountFactory } from '@account-abstraction/contracts';
 import { Signer } from '@ethersproject/abstract-signer';
 import { BaseApiParams, BaseAccountAPI } from './BaseAccountAPI';
 /**
@@ -28,16 +28,16 @@ export declare class SimpleAccountAPI extends BaseAccountAPI {
      * our account contract.
      * should support the "execFromEntryPoint" and "nonce" methods
      */
-    accountContract?: SimpleAccount;
+    accountContract?: any;
     factory?: SimpleAccountFactory;
     constructor(params: SimpleAccountApiParams);
-    _getAccountContract(): Promise<SimpleAccount>;
+    _getAccountContract(): Promise<any>;
     /**
      * return the value to put into the "initCode" field, if the account is not yet deployed.
      * this value holds the "factory" address, followed by this account's information
      */
     getAccountInitCode(): Promise<string>;
-    getNonce(): Promise<BigNumber>;
+    getNonce(): Promise<any>;
     /**
      * encode a method call from entryPoint to our contract
      * @param target

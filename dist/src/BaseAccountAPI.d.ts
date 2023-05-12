@@ -67,7 +67,6 @@ export declare abstract class BaseAccountAPI {
     abstract signUserOpHash(userOpHash: string): Promise<string>;
     /**
      * check if the contract is already deployed.
-     * TODO: check
      */
     checkAccountPhantom(): Promise<boolean>;
     /**

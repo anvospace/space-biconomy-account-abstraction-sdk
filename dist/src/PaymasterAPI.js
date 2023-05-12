@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymasterAPI = void 0;
+// TODO: check
 /**
  * an API to external a UserOperation with paymaster info
  */
@@ -11,7 +12,6 @@ class PaymasterAPI {
      *  paymasterAndData value, which will only be returned by this method..
      * @returns the value to put into the PaymasterAndData, undefined to leave it empty
      */
-    // TODO: check
     async getPaymasterAndData(userOp) {
         return '0x';
     }

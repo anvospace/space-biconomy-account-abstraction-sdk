@@ -41,9 +41,9 @@ class BaseAccountAPI {
         await this.getAccountAddress();
         return this;
     }
+    // TODO: check if right wrong biconmy
     /**
      * check if the contract is already deployed.
-     * TODO: check
      */
     async checkAccountPhantom() {
         if (!this.isPhantom) {
