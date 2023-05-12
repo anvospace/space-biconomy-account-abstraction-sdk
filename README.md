@@ -1,4 +1,4 @@
-# SDK to create and send UserOperation 
+# SDK to create and send UserOperation (using with Biconomy AA)
 
 This package provides 2 APIs for using UserOperations:
 
