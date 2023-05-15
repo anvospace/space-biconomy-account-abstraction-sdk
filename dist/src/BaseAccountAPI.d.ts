@@ -1,6 +1,6 @@
 import { BigNumber, BigNumberish } from 'ethers';
 import { Provider } from '@ethersproject/providers';
-import { UserOperationStruct } from '@account-abstraction/contracts';
+import { UserOperationStruct } from './typechain';
 import { TransactionDetailsForUserOp } from './TransactionDetailsForUserOp';
 import { PaymasterAPI } from './PaymasterAPI';
 import { NotPromise } from '@account-abstraction/utils';

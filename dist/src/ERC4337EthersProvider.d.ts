@@ -4,7 +4,7 @@ import { Network } from '@ethersproject/networks';
 import { ClientConfig } from './ClientConfig';
 import { ERC4337EthersSigner } from './ERC4337EthersSigner';
 import { HttpRpcClient } from './HttpRpcClient';
-import { EntryPoint, UserOperationStruct } from '@account-abstraction/contracts';
+import { EntryPoint, UserOperationStruct } from './typechain';
 import { BaseAccountAPI } from './BaseAccountAPI';
 export declare class ERC4337EthersProvider extends BaseProvider {
     readonly chainId: number;

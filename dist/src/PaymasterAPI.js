@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymasterAPI = void 0;
-// TODO: check
+// TODOS: check
 /**
  * an API to external a UserOperation with paymaster info
  */

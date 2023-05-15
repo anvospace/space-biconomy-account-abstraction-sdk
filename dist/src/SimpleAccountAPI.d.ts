@@ -1,5 +1,5 @@
 import { BigNumberish } from 'ethers';
-import { SimpleAccountFactory } from '@account-abstraction/contracts';
+import { SimpleAccountFactory } from './typechain';
 import { Signer } from '@ethersproject/abstract-signer';
 import { BaseApiParams, BaseAccountAPI } from './BaseAccountAPI';
 /**

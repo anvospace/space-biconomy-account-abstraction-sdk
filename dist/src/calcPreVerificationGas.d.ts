@@ -1,4 +1,4 @@
-import { UserOperationStruct } from '@account-abstraction/contracts';
+import { UserOperationStruct } from './typechain';
 import { NotPromise } from '@account-abstraction/utils';
 export interface GasOverheads {
     /**

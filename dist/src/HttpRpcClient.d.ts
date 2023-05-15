@@ -1,4 +1,4 @@
-import { UserOperationStruct } from '@account-abstraction/contracts';
+import { UserOperationStruct } from './typechain';
 export declare class HttpRpcClient {
     readonly bundlerUrl: string;
     readonly entryPointAddress: string;

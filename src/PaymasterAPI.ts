@@ -1,5 +1,5 @@
-import { UserOperationStruct } from '@account-abstraction/contracts'
-// TODO: check
+import { UserOperationStruct } from './typechain'
+// TODOS: check
 /**
  * an API to external a UserOperation with paymaster info
  */

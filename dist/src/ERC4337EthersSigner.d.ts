@@ -5,7 +5,7 @@ import { Bytes } from 'ethers';
 import { ERC4337EthersProvider } from './ERC4337EthersProvider';
 import { ClientConfig } from './ClientConfig';
 import { HttpRpcClient } from './HttpRpcClient';
-import { UserOperationStruct } from '@account-abstraction/contracts';
+import { UserOperationStruct } from './typechain';
 import { BaseAccountAPI } from './BaseAccountAPI';
 export declare class ERC4337EthersSigner extends Signer {
     readonly config: ClientConfig;

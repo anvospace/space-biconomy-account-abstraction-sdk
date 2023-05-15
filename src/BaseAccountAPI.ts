@@ -3,7 +3,7 @@ import { Provider } from '@ethersproject/providers'
 import {
   EntryPoint, EntryPoint__factory,
   UserOperationStruct
-} from '@account-abstraction/contracts'
+} from './typechain'
 
 import { TransactionDetailsForUserOp } from './TransactionDetailsForUserOp'
 import { resolveProperties } from 'ethers/lib/utils'
@@ -98,7 +98,7 @@ export abstract class BaseAccountAPI {
    */
   abstract signUserOpHash(userOpHash: string): Promise<string>
 
-  // TODO: check if right wrong biconmy
+  // TODOS: check if right wrong biconmy
   /**
    * check if the contract is already deployed.
    */
@@ -121,7 +121,7 @@ export abstract class BaseAccountAPI {
    * calculate the account address even before it is deployed
    */
   async getCounterFactualAddress(): Promise<string> {
-    const initCode = this.getAccountInitCode()
+    const initCode = await this.getAccountInitCode()
     // use entryPoint to query account address (factory can provide a helper method to do the same, but
     // this method attempts to be generic
     try {

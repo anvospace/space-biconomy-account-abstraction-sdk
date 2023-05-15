@@ -1,6 +1,6 @@
 import { JsonRpcProvider } from '@ethersproject/providers'
 
-import { EntryPoint__factory, SimpleAccountFactory__factory } from '@account-abstraction/contracts'
+import { EntryPoint__factory, SimpleAccountFactory__factory } from './typechain'
 
 import { ClientConfig } from './ClientConfig'
 import { SimpleAccountAPI } from './SimpleAccountAPI'
@@ -26,8 +26,19 @@ export async function wrapProvider (
   const entryPoint = EntryPoint__factory.connect(config.entryPointAddress, originalProvider)
   // Initial SimpleAccount instance is not deployed and exists just for the interface
   const detDeployer = new DeterministicDeployer(originalProvider)
-  const SimpleAccountFactory = await detDeployer.deterministicDeploy(new SimpleAccountFactory__factory(), 0, [entryPoint.address])
-  const smartAccountAPI = new SimpleAccountAPI({
+  // Assuming detDeployer is an instance of DeterministicDeployer
+const SimpleAccountFactoryFactory = new SimpleAccountFactory__factory(originalSigner);
+const salt = 0;  // Define your salt value
+const params: any[] | undefined = [];  // Define your constructor parameters if any
+
+const SimpleAccountFactory = await detDeployer.deterministicDeploy(
+  SimpleAccountFactoryFactory,
+  salt,
+  params
+);
+
+  
+    const smartAccountAPI = new SimpleAccountAPI({
     provider: originalProvider,
     entryPointAddress: entryPoint.address,
     owner: originalSigner,

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.wrapProvider = void 0;
-const contracts_1 = require("@account-abstraction/contracts");
+const typechain_1 = require("./typechain");
 const SimpleAccountAPI_1 = require("./SimpleAccountAPI");
 const ERC4337EthersProvider_1 = require("./ERC4337EthersProvider");
 const HttpRpcClient_1 = require("./HttpRpcClient");
@@ -18,10 +18,14 @@ const debug = (0, debug_1.default)('aa.wrapProvider');
  * @param originalSigner use this signer as the owner. of this wallet. By default, use the provider's signer
  */
 async function wrapProvider(originalProvider, config, originalSigner = originalProvider.getSigner()) {
-    const entryPoint = contracts_1.EntryPoint__factory.connect(config.entryPointAddress, originalProvider);
+    const entryPoint = typechain_1.EntryPoint__factory.connect(config.entryPointAddress, originalProvider);
     // Initial SimpleAccount instance is not deployed and exists just for the interface
     const detDeployer = new DeterministicDeployer_1.DeterministicDeployer(originalProvider);
-    const SimpleAccountFactory = await detDeployer.deterministicDeploy(new contracts_1.SimpleAccountFactory__factory(), 0, [entryPoint.address]);
+    // Assuming detDeployer is an instance of DeterministicDeployer
+    const SimpleAccountFactoryFactory = new typechain_1.SimpleAccountFactory__factory(originalSigner);
+    const salt = 0; // Define your salt value
+    const params = []; // Define your constructor parameters if any
+    const SimpleAccountFactory = await detDeployer.deterministicDeploy(SimpleAccountFactoryFactory, salt, params);
     const smartAccountAPI = new SimpleAccountAPI_1.SimpleAccountAPI({
         provider: originalProvider,
         entryPointAddress: entryPoint.address,

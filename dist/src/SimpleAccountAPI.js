@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SimpleAccountAPI = void 0;
 const ethers_1 = require("ethers");
-const contracts_1 = require("@account-abstraction/contracts");
+const typechain_1 = require("./typechain");
 const utils_1 = require("ethers/lib/utils");
 const BaseAccountAPI_1 = require("./BaseAccountAPI");
 const IAccount_json_1 = __importDefault(require("./IAccount.json"));
@@ -24,7 +24,7 @@ class SimpleAccountAPI extends BaseAccountAPI_1.BaseAccountAPI {
         this.owner = params.owner;
         this.index = ethers_1.BigNumber.from((_a = params.index) !== null && _a !== void 0 ? _a : 0);
     }
-    // TODO: check
+    // TODOS: check
     async _getAccountContract() {
         if (this.accountContract == null) {
             this.accountContract = new ethers_1.ethers.Contract(this.accountAddress || '0x0000000000000000000000000000000000000000', IAccount_json_1.default, this.provider);
@@ -38,7 +38,7 @@ class SimpleAccountAPI extends BaseAccountAPI_1.BaseAccountAPI {
     async getAccountInitCode() {
         if (this.factory == null) {
             if (this.factoryAddress != null && this.factoryAddress !== '') {
-                this.factory = contracts_1.SimpleAccountFactory__factory.connect(this.factoryAddress, this.provider);
+                this.factory = typechain_1.SimpleAccountFactory__factory.connect(this.factoryAddress, this.provider);
             }
             else {
                 throw new Error('no factory to get initCode');
@@ -49,12 +49,14 @@ class SimpleAccountAPI extends BaseAccountAPI_1.BaseAccountAPI {
             this.factory.interface.encodeFunctionData('createAccount', [await this.owner.getAddress(), this.index])
         ]);
     }
-    // TODO: getNonce in smart account
+    // TODOS: getNonce in smart account
     async getNonce() {
         if (await this.checkAccountPhantom()) {
             return ethers_1.BigNumber.from(0);
         }
-        return await this.provider.getTransactionCount(this.accountAddress || '0x0000000000000000000000000000000000000000');
+        this.accountContract = typechain_1.SimpleAccount__factory.connect(this.accountAddress, this.provider);
+        return this.accountContract.nonce;
+        // return await this.provider.getTransactionCount(this.accountAddress || '0x0000000000000000000000000000000000000000');
     }
     /**
      * encode a method call from entryPoint to our contract
@@ -64,7 +66,7 @@ class SimpleAccountAPI extends BaseAccountAPI_1.BaseAccountAPI {
      */
     async encodeExecute(target, value, data) {
         const accountContract = await this._getAccountContract();
-        return accountContract.interface.encodeFunctionData('executeCall', // TODO: execute => executeCALL
+        return accountContract.interface.encodeFunctionData('executeCall', // From execute => executeCall method
         [
             target,
             value,

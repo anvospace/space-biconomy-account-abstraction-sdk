@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseAccountAPI = void 0;
 const ethers_1 = require("ethers");
-const contracts_1 = require("@account-abstraction/contracts");
+const typechain_1 = require("./typechain");
 const utils_1 = require("ethers/lib/utils");
 const utils_2 = require("@account-abstraction/utils");
 const calcPreVerificationGas_1 = require("./calcPreVerificationGas");
@@ -32,7 +32,7 @@ class BaseAccountAPI {
         this.accountAddress = params.accountAddress;
         this.paymasterAPI = params.paymasterAPI;
         // factory "connect" define the contract address. the contract "connect" defines the "from" address.
-        this.entryPointView = contracts_1.EntryPoint__factory.connect(params.entryPointAddress, params.provider).connect(ethers_1.ethers.constants.AddressZero);
+        this.entryPointView = typechain_1.EntryPoint__factory.connect(params.entryPointAddress, params.provider).connect(ethers_1.ethers.constants.AddressZero);
     }
     async init() {
         if (await this.provider.getCode(this.entryPointAddress) === '0x') {
@@ -41,7 +41,7 @@ class BaseAccountAPI {
         await this.getAccountAddress();
         return this;
     }
-    // TODO: check if right wrong biconmy
+    // TODOS: check if right wrong biconmy
     /**
      * check if the contract is already deployed.
      */
@@ -64,7 +64,7 @@ class BaseAccountAPI {
      * calculate the account address even before it is deployed
      */
     async getCounterFactualAddress() {
-        const initCode = this.getAccountInitCode();
+        const initCode = await this.getAccountInitCode();
         // use entryPoint to query account address (factory can provide a helper method to do the same, but
         // this method attempts to be generic
         try {

@@ -1,6 +1,6 @@
 import { BigNumberish } from 'ethers';
 import { TransactionReceipt } from '@ethersproject/providers';
-import { EntryPoint } from '@account-abstraction/contracts';
+import { EntryPoint } from './typechain';
 /**
  * This class encapsulates Ethers.js listener function and necessary UserOperation details to
  * discover a TransactionReceipt for the operation.

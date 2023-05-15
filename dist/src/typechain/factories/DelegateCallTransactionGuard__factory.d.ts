@@ -1,0 +1,74 @@
+import { Signer, ContractFactory, Overrides } from "ethers";
+import { Provider, TransactionRequest } from "@ethersproject/providers";
+import type { DelegateCallTransactionGuard, DelegateCallTransactionGuardInterface } from "../DelegateCallTransactionGuard";
+export declare class DelegateCallTransactionGuard__factory extends ContractFactory {
+    constructor(...args: [signer: Signer] | ConstructorParameters<typeof ContractFactory>);
+    deploy(target: string, overrides?: Overrides & {
+        from?: string | Promise<string>;
+    }): Promise<DelegateCallTransactionGuard>;
+    getDeployTransaction(target: string, overrides?: Overrides & {
+        from?: string | Promise<string>;
+    }): TransactionRequest;
+    attach(address: string): DelegateCallTransactionGuard;
+    connect(signer: Signer): DelegateCallTransactionGuard__factory;
+    static readonly bytecode = "0x60a060405234801561001057600080fd5b5060405161051a38038061051a83398101604081905261002f91610040565b6001600160a01b0316608052610070565b60006020828403121561005257600080fd5b81516001600160a01b038116811461006957600080fd5b9392505050565b60805161048961009160003960008181608e015261013301526104896000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c806301ffc9a71461004e5780634f176ba61461007657806373a8c6821461008957806393271368146100c8575b005b61006161005c366004610190565b6100da565b60405190151581526020015b60405180910390f35b61004c610084366004610315565b610111565b6100b07f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b03909116815260200161006d565b61004c6100d6366004610408565b5050565b60006001600160e01b03198216636e183c6760e11b148061010b57506001600160e01b031982166301ffc9a760e01b145b92915050565b6001846020015160018111156101295761012961043d565b14801561016c57507f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031684600001516001600160a01b031614155b1561018a576040516375d63a5960e01b815260040160405180910390fd5b50505050565b6000602082840312156101a257600080fd5b81356001600160e01b0319811681146101ba57600080fd5b9392505050565b634e487b7160e01b600052604160045260246000fd5b60405160a0810167ffffffffffffffff811182821017156101fa576101fa6101c1565b60405290565b6001600160a01b038116811461021557600080fd5b50565b803561022381610200565b919050565b600082601f83011261023957600080fd5b813567ffffffffffffffff80821115610254576102546101c1565b604051601f8301601f19908116603f0116810190828211818310171561027c5761027c6101c1565b8160405283815286602085880101111561029557600080fd5b836020870160208301376000602085830101528094505050505092915050565b600060a082840312156102c757600080fd5b6102cf6101d7565b905081358152602082013560208201526040820135604082015260608201356102f781610200565b6060820152608082013561030a81610200565b608082015292915050565b600080600080610100858703121561032c57600080fd5b843567ffffffffffffffff8082111561034457600080fd5b9086019060a0828903121561035857600080fd5b6103606101d7565b823561036b81610200565b815260208301356002811061037f57600080fd5b6020820152604083810135908201526060830135828111156103a057600080fd5b6103ac8a828601610228565b6060830152506080838101359082015295506103cb88602089016102b5565b945060c08701359150808211156103e157600080fd5b506103ee87828801610228565b9250506103fd60e08601610218565b905092959194509250565b6000806040838503121561041b57600080fd5b823591506020830135801515811461043257600080fd5b809150509250929050565b634e487b7160e01b600052602160045260246000fdfea26469706673582212206a7fab4d5aa790f1a97e0e2706a1daa6f0c699fdea4ac967190c395d68cbf6c164736f6c63430008110033";
+    static readonly abi: ({
+        inputs: {
+            internalType: string;
+            name: string;
+            type: string;
+        }[];
+        stateMutability: string;
+        type: string;
+        name?: undefined;
+        outputs?: undefined;
+    } | {
+        inputs: never[];
+        name: string;
+        type: string;
+        stateMutability?: undefined;
+        outputs?: undefined;
+    } | {
+        stateMutability: string;
+        type: string;
+        inputs?: undefined;
+        name?: undefined;
+        outputs?: undefined;
+    } | {
+        inputs: ({
+            components: {
+                internalType: string;
+                name: string;
+                type: string;
+            }[];
+            internalType: string;
+            name: string;
+            type: string;
+        } | {
+            internalType: string;
+            name: string;
+            type: string;
+            components?: undefined;
+        })[];
+        name: string;
+        outputs: never[];
+        stateMutability: string;
+        type: string;
+    } | {
+        inputs: {
+            internalType: string;
+            name: string;
+            type: string;
+        }[];
+        name: string;
+        outputs: {
+            internalType: string;
+            name: string;
+            type: string;
+        }[];
+        stateMutability: string;
+        type: string;
+    })[];
+    static createInterface(): DelegateCallTransactionGuardInterface;
+    static connect(address: string, signerOrProvider: Signer | Provider): DelegateCallTransactionGuard;
+}

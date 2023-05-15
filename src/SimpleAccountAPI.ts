@@ -3,7 +3,7 @@ import {
   SimpleAccount,
   SimpleAccount__factory, SimpleAccountFactory,
   SimpleAccountFactory__factory
-} from '@account-abstraction/contracts'
+} from './typechain'
 
 import { arrayify, hexConcat } from 'ethers/lib/utils'
 import { Signer } from '@ethersproject/abstract-signer'
@@ -49,7 +49,7 @@ export class SimpleAccountAPI extends BaseAccountAPI {
     this.owner = params.owner
     this.index = BigNumber.from(params.index ?? 0)
   }
-  // TODO: check
+  // TODOS: check
   async _getAccountContract(): Promise<any> {
     if (this.accountContract == null) {
       this.accountContract = new ethers.Contract(this.accountAddress || '0x0000000000000000000000000000000000000000', ACCOUNT_ABI, this.provider)
@@ -75,12 +75,14 @@ export class SimpleAccountAPI extends BaseAccountAPI {
     ])
   }
 
-  // TODO: getNonce in smart account
+  // TODOS: getNonce in smart account
   async getNonce(): Promise<any> {
     if (await this.checkAccountPhantom()) {
       return BigNumber.from(0)
     }
-    return await this.provider.getTransactionCount(this.accountAddress || '0x0000000000000000000000000000000000000000');
+    this.accountContract = SimpleAccount__factory.connect(this.accountAddress!, this.provider)
+    return this.accountContract.nonce;
+    // return await this.provider.getTransactionCount(this.accountAddress || '0x0000000000000000000000000000000000000000');
   }
 
   /**
@@ -92,7 +94,7 @@ export class SimpleAccountAPI extends BaseAccountAPI {
   async encodeExecute(target: string, value: BigNumberish, data: string): Promise<string> {
     const accountContract: any = await this._getAccountContract()
     return accountContract.interface.encodeFunctionData(
-      'executeCall', // TODO: execute => executeCALL
+      'executeCall', // From execute => executeCall method
       [
         target,
         value,
