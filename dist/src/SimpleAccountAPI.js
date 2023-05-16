@@ -55,7 +55,9 @@ class SimpleAccountAPI extends BaseAccountAPI_1.BaseAccountAPI {
             return ethers_1.BigNumber.from(0);
         }
         this.accountContract = typechain_1.SimpleAccount__factory.connect(this.accountAddress, this.provider);
-        return this.accountContract.nonce;
+        console.log("🚀 ~ file: SimpleAccountAPI.ts:84 ~ SimpleAccountAPI ~ getNonce ~ this.accountContract:", this.accountContract);
+        // return '888'
+        return await this.accountContract.nonce;
         // return await this.provider.getTransactionCount(this.accountAddress || '0x0000000000000000000000000000000000000000');
     }
     /**

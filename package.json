@@ -1,6 +1,6 @@
 {
   "name": "space-bico-account-abstraction",
-  "version": "1.4.0",
+  "version": "1.9.5",
   "main": "./dist/src/index.js",
   "license": "MIT",
   "files": [

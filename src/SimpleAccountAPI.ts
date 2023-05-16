@@ -80,9 +80,9 @@ export class SimpleAccountAPI extends BaseAccountAPI {
     if (await this.checkAccountPhantom()) {
       return BigNumber.from(0)
     }
-    this.accountContract = SimpleAccount__factory.connect(this.accountAddress!, this.provider)
-    return this.accountContract.nonce;
-    // return await this.provider.getTransactionCount(this.accountAddress || '0x0000000000000000000000000000000000000000');
+    // this.accountContract = SimpleAccount__factory.connect(this.accountAddress!, this.provider)
+    // return this.accountContract.getNonce();
+    return await this.provider.getTransactionCount(this.accountAddress || '0x0000000000000000000000000000000000000000');
   }
 
   /**
@@ -94,7 +94,7 @@ export class SimpleAccountAPI extends BaseAccountAPI {
   async encodeExecute(target: string, value: BigNumberish, data: string): Promise<string> {
     const accountContract: any = await this._getAccountContract()
     return accountContract.interface.encodeFunctionData(
-      'executeCall', // From execute => executeCall method
+      'execute', // From execute => executeCall method
       [
         target,
         value,
